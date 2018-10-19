@@ -3,7 +3,8 @@ import {
 	EMAIL_CHANGED, 
 	PASSWORD_CHANGED, 
 	LOGIN_USER_SUCCESS,
-	LOGIN_USER_FAIL
+	LOGIN_USER_FAIL,
+	LOGIN_USER
 } from './types';
 
 export const emailChanged = (text) => {
@@ -23,11 +24,14 @@ export const passwordChanged = (text) => {
 export const loginUser = ({ email, password}) => {
 	//dispatch method allows you to send an action all the reducers in the application
 	return (dispatch) => {
+		dispatch({ type: LOGIN_USER });
+
 		firebase.auth().signInWithEmailAndPassword(email, password)
 			.then((user) => this.loginUserSuccess(dispatch, user) )
-			.catch(()=> {
+			.catch((err)=> {
+				console.log(err)
 				firebase.auth().createUserWithEmailAndPassword(email, password)
-					.then(() => loginUserSuccess(dispatch, user))
+					.then((user) => loginUserSuccess(dispatch, user))
 					.catch(() => loginUserFail(dispatch));
 			})
 	}
