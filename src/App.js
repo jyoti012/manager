@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ReactotronConfig';
+import Reactotron from './ReactotronConfig';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk'
@@ -22,8 +22,7 @@ class App extends Component {
 	}
 
   render() {
-		// {} => array to pass any initial State
-		// applyMiddleware(ReduxThunk) => store enhancers : adds additional functionality to the store
+		Reactotron.log('hello rendering world');
 		const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 		return(
 			<Provider store={store}>
