@@ -29,7 +29,7 @@ export const loginUser = ({ email, password}) => {
 		dispatch({ type: LOGIN_USER });
 
 		firebase.auth().signInWithEmailAndPassword(email, password)
-			.then((user) => this.loginUserSuccess(dispatch, user) )
+			.then((user) => loginUserSuccess(dispatch, user) )
 			.catch((err)=> {
 				console.log(err)
 				firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -49,5 +49,5 @@ const loginUserSuccess = (dispatch, user) => {
 		payload: user 
 	});
 
-	Actions.employeeList();
+	Actions.main();
 };
