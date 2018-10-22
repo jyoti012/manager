@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ReactotronConfig';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk'
